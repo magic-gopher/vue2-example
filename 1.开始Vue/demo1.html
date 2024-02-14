@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>声明式渲染-案例1</title>
+</head>
+
+<body>
+    <!-- div容器 -->
+    <div id="app1">
+        {{message}}
+    </div>
+
+    <div id="app2">
+        {{message}}
+    </div>
+
+    <div id="app3">
+        {{message}}
+    </div>
+
+    <div id="app4">
+        {{message}}
+    </div>
+
+    <script>
+        /*
+        data的两种写法
+            1、对象写法
+            2、函数写法
+        两者的区别是:
+            对象写法会在多个实例间共享数据，是一个单例。
+            函数写法的 data 每个实例可以维护一份被返回对象的独立的拷贝,不是单例,数据不会共享。
+        通常使用函数写法,因为:
+            可以避免组件间数据互相影响,耦合度低。
+            可以返回一个全新的数据对象,而不仅仅指向一个共享的对象。
+            可以在函数内部使用 ES6 的属性初始化,编写灵活的数据初始化逻辑。
+            所以在组件中,Vue 强制要求 data 必须是一个函数,这样可以保证组件数据的独立性,不会出现难以维护的Bug。
+
+            而对于简单的 Vue 实例,使用对象写法也是可以的。
+        */
+        // 创建一个vue实例
+        var vm1 = new Vue({
+            // el表示该Vue实例要挂载的DOM元素,这里是id为app的div
+            el: '#app1',
+            // data表示该Vue实例的数据对象
+            // 这个data是对象写法
+            data: {
+                message: 'Hello!'
+            }
+        });
+
+        // 创建一个vue实例
+        var vm2 = new Vue({
+            el: '#app2',
+            // 这个data是函数写法
+            data() {
+                return {
+                    message: 'Vue!'
+                }
+            }
+        })
+
+        var data = {
+            message: 'Golang'
+        }
+        // 对象写法的data能被多个实例共享
+        var vm3 = new Vue({
+            el: '#app3',
+            data
+        });
+        var vm4 = new Vue({
+            el: '#app4',
+            data
+        });
+    </script>
+</body>
+
+</html>

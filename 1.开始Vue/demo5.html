@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>组件化应用构建</title>
+</head>
+
+<body>
+    <!-- 
+        在Vue中，一个组件本质上是一个拥有预定义选线的一个Vue实例。
+    -->
+
+    <div id="app-7">
+        <ol>
+            <todo-item v-for="fruit in fruitList" v-bind:todo="fruit" v-bind:key="fruit.id">
+
+            </todo-item>
+        </ol>
+    </div>
+
+    <!-- js -->
+    <script>
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+
+        var app7 = new Vue({
+            // el表示该Vue实例要挂载的DOM元素
+            el: '#app-7',
+            data() {
+                return {
+                    fruitList: [
+                        { id: 1, text: 'apple' },
+                        { id: 2, text: 'banana' },
+                        { id: 3, text: 'lemon' },
+                        { id: 4, text: 'pear' }
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

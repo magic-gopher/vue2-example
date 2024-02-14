@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>处理用户输入</title>
+</head>
+
+<body>
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">点击我，反转内容!</button>
+    </div>
+
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <input type="text" v-model="message">
+    </div>
+
+    <script>
+        // Vue实例
+        var app5 = new Vue({
+            el: '#app-5',
+            data: {
+                message: 'Hello Vue!'
+            },
+            methods: {
+                reverseMessage() {
+                    // split函数：接受一个模式，通过搜索模式将字符串分割成一个有序的子串列表，将这些子串放入一个数组，并返回该数组。
+                    // reverse函数：就地反转数组中的元素，并返回同一数组的引用，换句话说，数组中的元素顺序将被翻转，变为与之前相反的方向。
+                    // join函数：将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。
+                    // this.message = this.message.split('').reverse().join('')
+                    const characters = this.message.split('');
+                    const reversedCharacters = [];
+                    for (let i = characters.length - 1; i >= 0; i--) {
+                        reversedCharacters.push(characters[i]);
+                    }
+                    this.message = reversedCharacters.join('');
+                }
+            },
+        });
+
+        // Vue实例
+        var app6 = new Vue({
+            // el表示该Vue实例要挂载的DOM元素
+            el: '#app-6',
+            data() {
+                return {
+                    message: 'Hello Golang!'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

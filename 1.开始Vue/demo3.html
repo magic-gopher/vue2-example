@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>条件与循环</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 
+            v-if: 当绑定的条件等于true时就可以渲染元素，表达式的值为false时就不会渲染元素。
+        -->
+        <p v-if="seen1">现在可以看见我了</p>
+        <p v-else="seen1">哈哈哈，你好!!!</p>
+
+        <!-- 
+            v-show：根据表达式的值是true或者是false来切换元素display值，控制元素显示与隐藏。
+        -->
+        <p v-show="seen2">Golang语言</p>
+    </div>
+
+    <div id="app2">
+        <ol>
+            <li v-for="book of books">
+                {{ book }}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        // 创建一个vue实例
+        let vm1 = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    seen1: true,
+                    seen2: false
+                }
+            },
+        });
+
+        // 创建一个vue实例
+        let vm2 = new Vue({
+            el: '#app2',
+            data() {
+                return {
+                    books: [
+                        '设计模式',
+                        '算法与数据结构',
+                        'SpringCloudAlibaba实战',
+                        'Go并发编程',
+                    ]
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
